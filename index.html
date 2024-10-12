@@ -434,6 +434,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -537,7 +538,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_create_table">2.1.1. create table</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE Student (
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE Student (
     studentId NUMBER(10) NOT NULL,
     firstName VARCHAR2(20),
     lastName VARCHAR2(20),
@@ -554,7 +555,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_insert_data">2.2.1. insert data</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">-- insert entire row into table
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- insert entire row into table
 INSERT INTO Tennisspieler
 VALUES (1, 'Roger', 'RF', to_date('08.08.1981', 'dd.mm.yyyy'));
 
@@ -568,7 +569,7 @@ VALUES (2, 'Rafael Nadal');</code></pre>
 <h4 id="_delete_data">2.2.2. delete data</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">DELETE FROM Tennisspieler
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DELETE FROM Tennisspieler
 WHERE mitgliedsnr = 2;</code></pre>
 </div>
 </div>
@@ -577,7 +578,7 @@ WHERE mitgliedsnr = 2;</code></pre>
 <h4 id="_change_date_format_session_specific">2.2.3. change date format (session specific)</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER SESSION SET NLS_DATE_FORMAT = 'DD.MM.YYYY';</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER SESSION SET NLS_DATE_FORMAT = 'DD.MM.YYYY';</code></pre>
 </div>
 </div>
 </div>
@@ -585,7 +586,7 @@ WHERE mitgliedsnr = 2;</code></pre>
 <h4 id="_select_data">2.2.4. select data</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM Tennisspieler;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM Tennisspieler;
 SELECT ROWNUM, name FROM Tennisspieler;</code></pre>
 </div>
 </div>
@@ -594,7 +595,7 @@ SELECT ROWNUM, name FROM Tennisspieler;</code></pre>
 <h4 id="_dummy_table">2.2.5. dummy table</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">select * from dual;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select * from dual;
 select sysdate from dual;
 select user from dual;
 
@@ -610,7 +611,7 @@ select 5+3 summe from dual;</code></pre>
 <h4 id="_nvl_and_coalesce">2.2.6. nvl and coalesce</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">-- if INITIALEN null, replace with ??
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- if INITIALEN null, replace with ??
 select MITGLIEDSNR, nvl(INITIALEN, '??') from Tennisspieler;
 
 -- takes first non-null parameter
@@ -622,7 +623,7 @@ select MITGLIEDSNR, coalesce(INITIALEN, null, '##', null, '??') from Tennisspiel
 <h4 id="_string_functions">2.2.7. string functions</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">-- length of string
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- length of string
 select name, LENGTH(name) from Tennisspieler;
 
 -- trim leading and trailing spaces
@@ -642,7 +643,7 @@ select instr('asdf', 'h') from dual; -- not found =&gt; 0</code></pre>
 <h4 id="_dates_and_date_functions">2.2.8. dates and date functions</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">-- subtract two dates =&gt; difference in days
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- subtract two dates =&gt; difference in days
 select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
 
 -- format dates
@@ -656,7 +657,7 @@ select to_char(sysdate, 'Year') from dual;</code></pre>
 <h4 id="_distinct">2.2.9. distinct</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-sql" data-lang="sql">select distinct name from Tennisspieler;</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select distinct name from Tennisspieler;</code></pre>
 </div>
 </div>
 </div>
@@ -666,8 +667,15 @@ select to_char(sysdate, 'Year') from dual;</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-12 10:50:12 UTC
+Last updated 2024-10-12 10:56:21 UTC
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>
