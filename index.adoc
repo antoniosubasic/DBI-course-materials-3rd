@@ -2,3 +2,14 @@
 Antonio Subašić | Databases and information systems lecture notes - HTL Leonding - 3rd grade 2024/25
 :toc: left
 :sectnums:
+
+== SQL Introduction
+
+[cols="1,4"]
+|===
+| SQL | Structured Query Language
+| DDL | Data Definition Language
+| DML | Data Manipulation Language
+| DCL | Data Control Language
+| DD  | Data Dictionary (central overview that stores metadata about database elements such as tables, columns, data types, and relationships)
+|===
