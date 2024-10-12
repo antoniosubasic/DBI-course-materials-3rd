@@ -464,6 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_string_functions">2.2.7. string functions</a></li>
 <li><a href="#_dates_and_date_functions">2.2.8. dates and date functions</a></li>
 <li><a href="#_distinct">2.2.9. distinct</a></li>
+<li><a href="#_comparison_operators">2.2.10. comparison operators</a></li>
 </ul>
 </li>
 </ul>
@@ -661,13 +662,31 @@ select to_char(sysdate, 'Year') from dual;</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_comparison_operators">2.2.10. comparison operators</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- _ is a single character wildcard
+select * from demo_tennis.players where trim(name) like 'B_ker';
+
+-- name and leagno where leagno is not null
+select name, leagno from demo_tennis.players where leagno is not null;
+
+-- all penalties where amount is between 25 and 50
+select * from demo_tennis.penalties where amount between 25 and 50;
+
+-- all penalties where playerno is 27 or 44
+select * from demo_tennis.penalties where playerno in (27, 44);</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-12 10:56:21 UTC
+Last updated 2024-10-12 11:03:11 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
