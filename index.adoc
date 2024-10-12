@@ -143,3 +143,20 @@ select to_char(sysdate, 'Year') from dual;
 ----
 select distinct name from Tennisspieler;
 ----
+
+==== comparison operators
+
+[source,sql]
+----
+-- _ is a single character wildcard
+select * from demo_tennis.players where trim(name) like 'B_ker';
+
+-- name and leagno where leagno is not null
+select name, leagno from demo_tennis.players where leagno is not null;
+
+-- all penalties where amount is between 25 and 50
+select * from demo_tennis.penalties where amount between 25 and 50;
+
+-- all penalties where playerno is 27 or 44
+select * from demo_tennis.penalties where playerno in (27, 44);
+----
