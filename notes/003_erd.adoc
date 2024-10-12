@@ -1,0 +1,12 @@
+== ERD - Entity Relationship Diagram
+
+[cols="1,4"]
+|===
+| Entity | *thing/object* in the *real world* that can be *uniquely identified*
+| Attribute | *property/characteristic* of an entity
+| Relationship | connection between two entities
+| Primary Key | *unique identifier* for a record in a table
+| Foreign Key | *field in a table* that *links to primary key* of another table
+| Composite Key | key that *consists of two or more attributes* that *together uniquely identify* an entity
+| Surrogate Key | a *unique and artificial* key that is used as the primary key (e.g. auto-incremented number)
+|===
