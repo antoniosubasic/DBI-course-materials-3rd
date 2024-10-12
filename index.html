@@ -445,6 +445,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_sql_introduction">1. SQL Introduction</a></li>
+<li><a href="#_ddl_dml">2. DDL &amp; DML</a>
+<ul class="sectlevel2">
+<li><a href="#_ddl_code_snippets">2.1. DDL - code snippets</a></li>
+<li><a href="#_dml_code_snippets">2.2. DML - code snippets</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -482,10 +488,169 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_ddl_dml">2. DDL &amp; DML</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rollback</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a command used to <strong>undo transactions</strong> that have not been committed, reverting the database to its previous state before the transaction began</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Commit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">a command used to <strong>save transactions</strong> that have been made since the last commit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Beginning of Transaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EOT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">End of Transaction</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_ddl_code_snippets">2.1. DDL - code snippets</h3>
+<div class="sect3">
+<h4 id="_create_table">2.1.1. create table</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">CREATE TABLE Student (
+    studentId NUMBER(10) NOT NULL,
+    firstName VARCHAR2(20),
+    lastName VARCHAR2(20),
+    birthDate DATE,
+    isActive CHAR(1) DEFAULT ('1') NOT NULL
+);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dml_code_snippets">2.2. DML - code snippets</h3>
+<div class="sect3">
+<h4 id="_insert_data">2.2.1. insert data</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">-- insert entire row into table
+INSERT INTO Tennisspieler
+VALUES (1, 'Roger', 'RF', to_date('08.08.1981', 'dd.mm.yyyy'));
+
+-- insert specific columns into table
+INSERT INTO Tennisspieler(mitgliedsnr, name)
+VALUES (2, 'Rafael Nadal');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_delete_data">2.2.2. delete data</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">DELETE FROM Tennisspieler
+WHERE mitgliedsnr = 2;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_change_date_format_session_specific">2.2.3. change date format (session specific)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">ALTER SESSION SET NLS_DATE_FORMAT = 'DD.MM.YYYY';</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_select_data">2.2.4. select data</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">SELECT * FROM Tennisspieler;
+SELECT ROWNUM, name FROM Tennisspieler;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dummy_table">2.2.5. dummy table</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">select * from dual;
+select sysdate from dual;
+select user from dual;
+
+-- modulo operation
+select mod(5,3) from dual;
+
+-- sum with table name "summe"
+select 5+3 summe from dual;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nvl_and_coalesce">2.2.6. nvl and coalesce</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">-- if INITIALEN null, replace with ??
+select MITGLIEDSNR, nvl(INITIALEN, '??') from Tennisspieler;
+
+-- takes first non-null parameter
+select MITGLIEDSNR, coalesce(INITIALEN, null, '##', null, '??') from Tennisspieler;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_string_functions">2.2.7. string functions</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">-- length of string
+select name, LENGTH(name) from Tennisspieler;
+
+-- trim leading and trailing spaces
+select '      vorname   ', LENGTH('      vorname   ') from dual;
+select trim('      vorname   '), LENGTH(trim('      vorname   ')) from dual;
+
+-- select substring (start, length) =&gt; index is 1-based
+select select substr('ökaldjfölasjdföasljfd', 2, 3) from dual;
+
+-- find position of substring
+select instr('abcdf', 'cd') from dual; -- index of 'cd' in 'abcdf'
+select instr('asdf', 'h') from dual; -- not found =&gt; 0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dates_and_date_functions">2.2.8. dates and date functions</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">-- subtract two dates =&gt; difference in days
+select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
+
+-- format dates
+select to_char(sysdate, 'dd.mm.yyyy') from dual;
+select to_char(sysdate, 'HH24:MI'), to_char(sysdate, 'Month'), to_char(sysdate, 'Day') from dual;
+select to_char(sysdate, 'Year') from dual;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_distinct">2.2.9. distinct</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">select distinct name from Tennisspieler;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-12 10:26:37 UTC
+Last updated 2024-10-12 10:48:28 UTC
 </div>
 </div>
 </body>
