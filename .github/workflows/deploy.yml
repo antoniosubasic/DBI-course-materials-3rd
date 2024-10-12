@@ -18,6 +18,15 @@ jobs:
       with:
         ruby-version: 3.0
         bundler-cache: true
+    
+    - name: Generate index.adoc with included notes
+      run: |
+        NOTES_DIR="notes"
+        INDEX_FILE="index.adoc"
+
+        for file in $(ls "$NOTES_DIR"/[0-9]*.adoc | sort); do
+          echo "include::$file[]" >> $INDEX_FILE
+        done
 
     - name: Convert AsciiDoc to HTML
       run: |

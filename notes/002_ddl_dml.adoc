@@ -1,0 +1,144 @@
+== DDL & DML
+
+[cols="1,4"]
+|===
+| Rollback | a command used to *undo transactions* that have not been committed, reverting the database to its previous state before the transaction began
+| Commit | a command used to *save transactions* that have been made since the last commit
+| BOT | Beginning of Transaction
+| EOT | End of Transaction
+|===
+
+=== DDL - code snippets
+
+==== create table
+
+[source,sql]
+----
+CREATE TABLE Student (
+    studentId NUMBER(10) NOT NULL,
+    firstName VARCHAR2(20),
+    lastName VARCHAR2(20),
+    birthDate DATE,
+    isActive CHAR(1) DEFAULT ('1') NOT NULL
+);
+----
+
+=== DML - code snippets
+
+==== insert data
+
+[source,sql]
+----
+-- insert entire row into table
+INSERT INTO Tennisspieler
+VALUES (1, 'Roger', 'RF', to_date('08.08.1981', 'dd.mm.yyyy'));
+
+-- insert specific columns into table
+INSERT INTO Tennisspieler(mitgliedsnr, name)
+VALUES (2, 'Rafael Nadal');
+----
+
+==== delete data
+
+[source,sql]
+----
+DELETE FROM Tennisspieler
+WHERE mitgliedsnr = 2;
+----
+
+==== change date format (session specific)
+
+[source,sql]
+----
+ALTER SESSION SET NLS_DATE_FORMAT = 'DD.MM.YYYY';
+----
+
+==== select data
+
+[source,sql]
+----
+SELECT * FROM Tennisspieler;
+SELECT ROWNUM, name FROM Tennisspieler;
+----
+
+==== dummy table
+
+[source,sql]
+----
+select * from dual;
+select sysdate from dual;
+select user from dual;
+
+-- modulo operation
+select mod(5,3) from dual;
+
+-- sum with table name "summe"
+select 5+3 summe from dual;
+----
+
+==== nvl and coalesce
+
+[source,sql]
+----
+-- if INITIALEN null, replace with ??
+select MITGLIEDSNR, nvl(INITIALEN, '??') from Tennisspieler;
+
+-- takes first non-null parameter
+select MITGLIEDSNR, coalesce(INITIALEN, null, '##', null, '??') from Tennisspieler;
+----
+
+==== string functions
+
+[source,sql]
+----
+-- length of string
+select name, LENGTH(name) from Tennisspieler;
+
+-- trim leading and trailing spaces
+select '      vorname   ', LENGTH('      vorname   ') from dual;
+select trim('      vorname   '), LENGTH(trim('      vorname   ')) from dual;
+
+-- select substring (start, length) => index is 1-based
+select select substr('ökaldjfölasjdföasljfd', 2, 3) from dual;
+
+-- find position of substring
+select instr('abcdf', 'cd') from dual; -- index of 'cd' in 'abcdf'
+select instr('asdf', 'h') from dual; -- not found => 0
+----
+
+==== dates and date functions
+
+[source,sql]
+----
+-- subtract two dates => difference in days
+select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
+
+-- format dates
+select to_char(sysdate, 'dd.mm.yyyy') from dual;
+select to_char(sysdate, 'HH24:MI'), to_char(sysdate, 'Month'), to_char(sysdate, 'Day') from dual;
+select to_char(sysdate, 'Year') from dual;
+----
+
+==== distinct
+
+[source,sql]
+----
+select distinct name from Tennisspieler;
+----
+
+==== comparison operators
+
+[source,sql]
+----
+-- _ is a single character wildcard
+select * from demo_tennis.players where trim(name) like 'B_ker';
+
+-- name and leagno where leagno is not null
+select name, leagno from demo_tennis.players where leagno is not null;
+
+-- all penalties where amount is between 25 and 50
+select * from demo_tennis.penalties where amount between 25 and 50;
+
+-- all penalties where playerno is 27 or 44
+select * from demo_tennis.penalties where playerno in (27, 44);
+----
