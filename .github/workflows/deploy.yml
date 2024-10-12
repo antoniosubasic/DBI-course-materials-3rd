@@ -1,0 +1,32 @@
+name: Deploy AsciiDoc to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v3
+
+    - name: Set up Ruby and install Asciidoctor
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+        bundler-cache: true
+
+    - name: Convert AsciiDoc to HTML
+      run: |
+        gem install asciidoctor
+        asciidoctor index.adoc -o docs/index.html
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./docs/

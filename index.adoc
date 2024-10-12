@@ -1,0 +1,4 @@
+= DBI Lecture Notes
+Antonio Subašić | Databases and information systems lecture notes - HTL Leonding - 3rd grade 2024/25
+:toc: left
+:sectnums:
