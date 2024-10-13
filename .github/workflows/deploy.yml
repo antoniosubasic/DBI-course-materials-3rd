@@ -32,6 +32,7 @@ jobs:
       run: |
         gem install asciidoctor
         asciidoctor index.adoc -o docs/index.html
+        cp favicon.svg docs/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
