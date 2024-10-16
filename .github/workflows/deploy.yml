@@ -1,4 +1,4 @@
-name: Deploy AsciiDoc to GitHub Pages
+name: 🚀 Deploy AsciiDoc to GitHub Pages
 
 on:
   push:
@@ -14,16 +14,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out the repository
+    - name: 📥 Check out the repository
       uses: actions/checkout@v3
 
-    - name: Set up Ruby and install Asciidoctor
+    - name: 💎 Set up Ruby and install Asciidoctor
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0
         bundler-cache: true
     
-    - name: Generate index.adoc with included notes
+    - name: 📝 Generate index.adoc with included notes
       run: |
         NOTES_DIR="notes"
         INDEX_FILE="index.adoc"
@@ -32,13 +32,13 @@ jobs:
           echo "include::$file[]" >> $INDEX_FILE
         done
 
-    - name: Convert AsciiDoc to HTML
+    - name: 📄 Convert AsciiDoc to HTML
       run: |
         gem install asciidoctor
         asciidoctor index.adoc -o docs/index.html
         cp favicon.svg docs/
 
-    - name: Deploy to GitHub Pages
+    - name: 🌐 Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
