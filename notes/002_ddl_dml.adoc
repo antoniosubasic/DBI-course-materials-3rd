@@ -12,7 +12,6 @@
 
 ==== create table
 
-[source,sql]
 ----
 CREATE TABLE Student (
     studentId NUMBER(10) NOT NULL,
@@ -27,7 +26,6 @@ CREATE TABLE Student (
 
 ==== insert data
 
-[source,sql]
 ----
 -- insert entire row into table
 INSERT INTO Tennisspieler
@@ -40,7 +38,6 @@ VALUES (2, 'Rafael Nadal');
 
 ==== delete data
 
-[source,sql]
 ----
 DELETE FROM Tennisspieler
 WHERE mitgliedsnr = 2;
@@ -48,14 +45,12 @@ WHERE mitgliedsnr = 2;
 
 ==== change date format (session specific)
 
-[source,sql]
 ----
 ALTER SESSION SET NLS_DATE_FORMAT = 'DD.MM.YYYY';
 ----
 
 ==== select data
 
-[source,sql]
 ----
 SELECT * FROM Tennisspieler;
 SELECT ROWNUM, name FROM Tennisspieler;
@@ -63,7 +58,6 @@ SELECT ROWNUM, name FROM Tennisspieler;
 
 ==== dummy table
 
-[source,sql]
 ----
 select * from dual;
 select sysdate from dual;
@@ -78,7 +72,6 @@ select 5+3 summe from dual;
 
 ==== nvl and coalesce
 
-[source,sql]
 ----
 -- if INITIALEN null, replace with ??
 select MITGLIEDSNR, nvl(INITIALEN, '??') from Tennisspieler;
@@ -89,7 +82,6 @@ select MITGLIEDSNR, coalesce(INITIALEN, null, '##', null, '??') from Tennisspiel
 
 ==== string functions
 
-[source,sql]
 ----
 -- length of string
 select name, LENGTH(name) from Tennisspieler;
@@ -108,7 +100,6 @@ select instr('asdf', 'h') from dual; -- not found => 0
 
 ==== dates and date functions
 
-[source,sql]
 ----
 -- subtract two dates => difference in days
 select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
@@ -121,14 +112,12 @@ select to_char(sysdate, 'Year') from dual;
 
 ==== distinct
 
-[source,sql]
 ----
 select distinct name from Tennisspieler;
 ----
 
 ==== comparison operators
 
-[source,sql]
 ----
 -- _ is a single character wildcard
 select * from demo_tennis.players where trim(name) like 'B_ker';
