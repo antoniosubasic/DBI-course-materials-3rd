@@ -4,5 +4,6 @@ Antonio Subašić | Databases and information systems lecture notes - HTL Leondi
 :toclevels: 3
 :sectnums:
 :source-highlighter: highlightjs
+:source-language: sql
 :favicon: favicon.svg
 
