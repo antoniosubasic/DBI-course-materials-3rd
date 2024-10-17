@@ -96,6 +96,10 @@ select select substr('ökaldjfölasjdföasljfd', 2, 3) from dual;
 -- find position of substring
 select instr('abcdf', 'cd') from dual; -- index of 'cd' in 'abcdf'
 select instr('asdf', 'h') from dual; -- not found => 0
+
+-- concatenate strings
+select 'a' || 'b' from dual;
+select concat('a', 'b') from dual;
 ----
 
 ==== dates and date functions
