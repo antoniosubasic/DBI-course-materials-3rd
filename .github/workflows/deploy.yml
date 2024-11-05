@@ -8,22 +8,23 @@ on:
       - 'notes/**'
       - 'index.adoc'
       - 'favicon.svg'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 📥 Check out the repository
+    - name: 📥 Checkout repository
       uses: actions/checkout@v3
 
-    - name: 💎 Set up Ruby and install Asciidoctor
+    - name: 💎 Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0
         bundler-cache: true
     
-    - name: 📝 Generate index.adoc with included notes
+    - name: 📝 Generate index.adoc
       run: |
         NOTES_DIR="notes"
         INDEX_FILE="index.adoc"
@@ -44,3 +45,5 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: gh-pages
         publish_dir: ./docs/
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
