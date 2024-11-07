@@ -112,6 +112,11 @@ select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
 select to_char(sysdate, 'dd.mm.yyyy') from dual;
 select to_char(sysdate, 'HH24:MI'), to_char(sysdate, 'Month'), to_char(sysdate, 'Day') from dual;
 select to_char(sysdate, 'Year') from dual;
+
+-- extract certain parts of date
+select extract(year from sysdate) from dual;
+select extract(month from sysdate) from dual;
+select extract(day from sysdate) from dual;
 ----
 
 ==== distinct
