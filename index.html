@@ -656,7 +656,12 @@ select sysdate - to_date('01.01.2022', 'dd.mm.yyyy') from dual;
 -- format dates
 select to_char(sysdate, 'dd.mm.yyyy') from dual;
 select to_char(sysdate, 'HH24:MI'), to_char(sysdate, 'Month'), to_char(sysdate, 'Day') from dual;
-select to_char(sysdate, 'Year') from dual;</code></pre>
+select to_char(sysdate, 'Year') from dual;
+
+-- extract certain parts of date
+select extract(year from sysdate) from dual;
+select extract(month from sysdate) from dual;
+select extract(day from sysdate) from dual;</code></pre>
 </div>
 </div>
 </div>
@@ -737,7 +742,7 @@ select * from demo_tennis.penalties where playerno in (27, 44);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-23 13:18:08 UTC
+Last updated 2024-11-07 10:32:16 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
