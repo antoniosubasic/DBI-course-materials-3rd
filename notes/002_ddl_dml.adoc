@@ -140,3 +140,15 @@ select * from demo_tennis.penalties where amount between 25 and 50;
 -- all penalties where playerno is 27 or 44
 select * from demo_tennis.penalties where playerno in (27, 44);
 ----
+
+==== group by
+
+----
+select extract(year from datum), -- extract year from date
+    count(*) "Anzahl", -- count number of rows
+    round(sum(preis), 2) "Gesamtumsatz", -- sum of price rounded to 2 decimal places
+    round(avg(preis), 2) "Durchschnitt" -- average price rounded to 2 decimal places
+from bestellung
+group by extract(year from datum) -- group by year
+order by 1 desc; -- order by first column (year) descending
+----
