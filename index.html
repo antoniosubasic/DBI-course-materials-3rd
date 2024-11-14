@@ -466,6 +466,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_dates_and_date_functions">2.2.8. dates and date functions</a></li>
 <li><a href="#_distinct">2.2.9. distinct</a></li>
 <li><a href="#_comparison_operators">2.2.10. comparison operators</a></li>
+<li><a href="#_group_by">2.2.11. group by</a></li>
+<li><a href="#_having">2.2.12. having</a></li>
 </ul>
 </li>
 </ul>
@@ -691,6 +693,34 @@ select * from demo_tennis.penalties where playerno in (27, 44);</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_group_by">2.2.11. group by</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select extract(year from datum), -- extract year from date
+    count(*) "Anzahl", -- count number of rows
+    round(sum(preis), 2) "Gesamtumsatz", -- sum of price rounded to 2 decimal places
+    round(avg(preis), 2) "Durchschnitt" -- average price rounded to 2 decimal places
+from bestellung
+group by extract(year from datum) -- group by year
+order by 1 desc; -- order by first column (year) descending</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_having">2.2.12. having</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select kundennr,
+    count(*) "Anzahl"
+from bestellung
+where extract(year from datum) = 2022
+group by kundennr -- group by customer number
+having count(2) &gt;= 2 -- only show customers with at least 2 orders
+order by count(*) desc, kundennr asc; -- order by count descending and customer number ascending</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -742,7 +772,7 @@ select * from demo_tennis.penalties where playerno in (27, 44);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-07 10:32:16 UTC
+Last updated 2024-11-14 09:53:23 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
