@@ -152,3 +152,15 @@ from bestellung
 group by extract(year from datum) -- group by year
 order by 1 desc; -- order by first column (year) descending
 ----
+
+==== having
+
+----
+select kundennr,
+    count(*) "Anzahl"
+from bestellung
+where extract(year from datum) = 2022
+group by kundennr -- group by customer number
+having count(2) >= 2 -- only show customers with at least 2 orders
+order by count(*) desc, kundennr asc; -- order by count descending and customer number ascending
+----
