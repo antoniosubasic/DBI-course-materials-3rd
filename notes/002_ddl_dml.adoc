@@ -91,7 +91,7 @@ select '      vorname   ', LENGTH('      vorname   ') from dual;
 select trim('      vorname   '), LENGTH(trim('      vorname   ')) from dual;
 
 -- select substring (start, length) => index is 1-based
-select select substr('ökaldjfölasjdföasljfd', 2, 3) from dual;
+select substr('ökaldjfölasjdföasljfd', 2, 3) from dual;
 
 -- find position of substring
 select instr('abcdf', 'cd') from dual; -- index of 'cd' in 'abcdf'
