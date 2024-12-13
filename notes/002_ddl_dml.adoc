@@ -150,7 +150,7 @@ select extract(year from datum), -- extract year from date
     round(avg(preis), 2) "Durchschnitt" -- average price rounded to 2 decimal places
 from bestellung
 group by extract(year from datum) -- group by year
-order by 1 desc; -- order by first column (year) descending
+order by 1 desc nulls last; -- order by first column (year) descending, null values should be last
 ----
 
 ==== having
