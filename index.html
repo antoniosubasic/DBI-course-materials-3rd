@@ -703,7 +703,7 @@ select * from demo_tennis.penalties where playerno in (27, 44);</code></pre>
     round(avg(preis), 2) "Durchschnitt" -- average price rounded to 2 decimal places
 from bestellung
 group by extract(year from datum) -- group by year
-order by 1 desc; -- order by first column (year) descending</code></pre>
+order by 1 desc nulls last; -- order by first column (year) descending, null values should be last</code></pre>
 </div>
 </div>
 </div>
@@ -772,7 +772,7 @@ order by count(*) desc, kundennr asc; -- order by count descending and customer 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-12-10 16:48:12 UTC
+Last updated 2024-12-13 10:11:03 UTC
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
